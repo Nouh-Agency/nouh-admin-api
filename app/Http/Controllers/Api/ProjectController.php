@@ -35,6 +35,7 @@ class ProjectController extends Controller
 
   public function show(Project $project)
   {
+    abort_unless($project->is_visible, 404);
     return new ProjectResource($this->projectService->findOne($project));
   }
 
@@ -80,6 +81,7 @@ class ProjectController extends Controller
 
   public function related(Project $project)
   {
+    abort_unless($project->is_visible, 404);
 
     $relatedProjects = $this->projectService->findRelated($project);
     return ProjectResource::collection($relatedProjects);
@@ -99,6 +101,7 @@ class ProjectController extends Controller
 
   public function like(Project $project)
   {
+    abort_unless($project->is_visible, 404);
     $project->increment('likes_count');
 
     return response()->json([

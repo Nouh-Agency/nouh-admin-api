@@ -10,7 +10,7 @@ class ProjectService
 {
   public function findAll()
   {
-    return Project::with([
+    return Project::where('is_visible', true)->with([
       'category',
       'tags',
       'linkTypes',
@@ -21,6 +21,7 @@ class ProjectService
   public function findFeatured()
   {
     return Project::where('is_featured', true)
+      ->where('is_visible', true)
       ->with([
         'category',
         'galleries.media'
@@ -32,6 +33,7 @@ class ProjectService
   public function findRelated($project)
   {
     return Project::where('category_id', $project->category_id)
+      ->where('is_visible', true)
       ->where('id', '!=', $project->id)
       ->with(['category', 'galleries.media'])
       ->latest()
@@ -41,7 +43,7 @@ class ProjectService
 
   public function findTopLiked($limit = 6)
   {
-    return Project::with([
+    return Project::where('is_visible', true)->with([
       'category',
       'galleries.media'
     ])

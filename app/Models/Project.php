@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['name', 'category_id', 'description', 'project_number', 'is_featured', 'country', 'likes_count'])]
+#[Fillable(['name', 'category_id', 'description', 'project_number', 'is_featured', 'is_visible', 'country', 'likes_count'])]
 class Project extends Model
 {
   use HasFactory;
@@ -17,6 +17,7 @@ class Project extends Model
     'name' => 'array',
     'description' => 'array',
     'is_featured' => 'boolean',
+    'is_visible' => 'boolean',
     'country' => 'array',
   ];
   public function getTranslatedNameAttribute(): string

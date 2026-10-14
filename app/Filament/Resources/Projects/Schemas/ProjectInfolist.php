@@ -62,6 +62,10 @@ class ProjectInfolist
                   ->label('عدد الاعجابات')
                   ->size(TextSize::Large),
 
+                IconEntry::make('is_visible')
+                  ->label('إظهار المشروع')
+                  ->boolean(),
+
               ]),
 
             Grid::make(1)

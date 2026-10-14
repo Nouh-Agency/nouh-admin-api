@@ -69,6 +69,10 @@ class ProjectsTable
           ->offIcon('heroicon-m-x-mark')
           ->onColor('warning'),
 
+        ToggleColumn::make('is_visible')
+          ->label('إظهار المشروع')
+          ->sortable(),
+
         TextColumn::make('created_at')
           ->label('تاريخ الإنشاء')
           ->dateTime()

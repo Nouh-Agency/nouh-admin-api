@@ -58,6 +58,12 @@ class ProjectForm
                   ->onColor('warning')
                   ->default(false),
 
+                Toggle::make('is_visible')
+                  ->label('إظهار المشروع')
+                  ->helperText('عند إيقاف هذا الخيار لن يظهر المشروع في الموقع.')
+                  ->inline(false)
+                  ->default(true),
+
 
                 TextInput::make('name.ar')
                   ->label('اسم المشروع (بالعربية)')
