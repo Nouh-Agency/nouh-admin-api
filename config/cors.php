@@ -19,7 +19,10 @@ return [
 
   'allowed_methods' => ['*'],
 
-  'allowed_origins' => ['https://www.nouh-agency.com', 'http://localhost:5173'],
+  'allowed_origins' => [
+    'https://www.nouh-agency.com',
+    'https://nouh-agency.com'
+  ],
 
   'allowed_origins_patterns' => [],
 
