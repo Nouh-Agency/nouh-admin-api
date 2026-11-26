@@ -19,7 +19,7 @@ Route::middleware('setLocale')->group(function (): void {
     Route::get('featured', 'featured')->name('featured');
     Route::get('top-liked', 'topLiked')->name('top-liked');
     Route::get('{project}/related', 'related')->name('related');
-    Route::post('{project}/like', 'like')->middleware('throttle:10,1')->name('like');
+    Route::post('{project}/like', 'like')->middleware('throttle:project-likes')->name('like');
   });
 
   Route::apiResource('projects', ProjectController::class)->only(['index', 'show']);
@@ -27,8 +27,8 @@ Route::middleware('setLocale')->group(function (): void {
 
   Route::get('users/images', [UserController::class, 'userImages']);
 
-  Route::post('contact', [ContactController::class, 'sendContact'])->middleware('throttle:5,1');
+  Route::post('contact', [ContactController::class, 'sendContact'])->middleware('throttle:contact');
 });
 
 // The 360-degree image proxy does not require locale middleware.
-Route::get('vr-proxy', [ProjectController::class, 'vrProxy'])->name('vr-proxy');
+Route::get('vr-proxy', [ProjectController::class, 'vrProxy'])->middleware('throttle:vr-images')->name('vr-proxy');
