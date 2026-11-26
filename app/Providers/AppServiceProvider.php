@@ -9,21 +9,21 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
-    public function register(): void
-    {
-        //
-    }
+  /**
+   * Register any application services.
+   */
+  public function register(): void
+  {
+    //
+  }
 
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
-    {
-        RateLimiter::for('contact', fn (Request $request) => Limit::perMinute(5)->by($request->ip()));
-        RateLimiter::for('project-likes', fn (Request $request) => Limit::perMinute(10)->by($request->ip()));
-        RateLimiter::for('vr-images', fn (Request $request) => Limit::perMinute(60)->by($request->ip()));
-    }
+  /**
+   * Bootstrap any application services.
+   */
+  public function boot(): void
+  {
+    RateLimiter::for('contact', fn(Request $request) => Limit::perMinute(5)->by($request->ip()));
+    RateLimiter::for('project-likes', fn(Request $request) => Limit::perMinutes(5, 10)->by($request->ip()));
+    RateLimiter::for('vr-images', fn(Request $request) => Limit::perMinute(60)->by($request->ip()));
+  }
 }
